@@ -1,0 +1,19 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Marko Vasic, portfolio site",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "author": "Marko Vasic",
+  "license": "ISC",
+  "dependencies": {
+    "@parcel/config-default": "^2.7.0",
+    "parcel": "^2.7.0",
+    "three": "^0.146.0"
+  },
+  "devDependencies": {
+    "parcel-reporter-static-files-copy": "^1.4.0"
+  }
+}
