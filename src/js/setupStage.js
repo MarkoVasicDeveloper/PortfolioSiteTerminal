@@ -15,13 +15,19 @@ export function setupStage() {
     // controls.update();
     camera.updateProjectionMatrix();
 
-    scene.add(camera);
+    const light = new THREE.DirectionalLight(new THREE.Color('#ccc'), 1);
+    light.position.set(1, 2, 3);
+    light.castShadow = true;
+
+    scene.add(camera, light);
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 4;
+    renderer.toneMappingExposure = 1;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     document.body.appendChild(renderer.domElement);
     
     return { scene, camera, renderer}

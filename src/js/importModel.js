@@ -18,6 +18,9 @@ export function importModel(scene) {
     
             loader.load(model, (gltf) => {
                 gltf.scene.scale.set(1.27,1,1);
+                gltf.scene.traverse(mesh => {
+                    if(mesh.isMesh) mesh.castShadow = true;
+                })
                 res(gltf)
             })
         })
