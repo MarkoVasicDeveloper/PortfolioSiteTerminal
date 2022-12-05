@@ -1,14 +1,17 @@
 import * as THREE from 'three';
-import { importModel } from "./js/importModel";
+import { importModel, loadModel } from "./js/importModel";
+import { moveCamera } from './js/moveCamera';
 import { setupStage } from "./js/setupStage";
-import comp from '../static/scene.gltf';
 
 const { scene, camera, renderer} = setupStage();
 
-importModel(comp, scene);
+let computer;
+importModel(scene).then(res => {scene.add(res.scene); computer = res.scene})
 
+window.addEventListener('wheel', (e) => moveCamera(e, camera, computer));
 
 function animation() {
+    // if(computer) console.log(computer)
     renderer.render(scene, camera);
     requestAnimationFrame(animation);
 }
