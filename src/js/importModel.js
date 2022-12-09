@@ -3,8 +3,7 @@ import hdr from '../../static/HDR2.hdr';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 import model from '../../static/scene.glb'
-
-
+import { canvasTexture } from '..';
 
 export function importModel(scene) {
     return new Promise((res) => {
@@ -20,14 +19,16 @@ export function importModel(scene) {
                 gltf.scene.scale.set(1.27,1,1);
                 gltf.scene.traverse(mesh => {
                     if(mesh.isMesh) mesh.castShadow = true;
+                    if(mesh.name === 'defaultMaterial006'){
+                        mesh.geometry = new THREE.PlaneGeometry(1.4,0.9,1);
+                        mesh.material = new THREE.MeshBasicMaterial({
+                            map: canvasTexture,
+                            side: THREE.FrontSide
+                        })
+                    }
                 })
                 res(gltf)
             })
         })
     })
 }
-
-// export async function loadModel(url) {
-//     let gltf = await loader.loadAsync(url);
-//     return gltf;
-// }
