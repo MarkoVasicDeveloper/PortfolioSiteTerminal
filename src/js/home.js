@@ -1,4 +1,4 @@
-export function home(canvas) {
+export function home(canvas, ctx) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 0;

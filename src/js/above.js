@@ -1,4 +1,4 @@
-export function above(canvas) {
+export function above(canvas, ctx) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 0;

@@ -1,4 +1,4 @@
-export function help(canvas) {
+export function help(canvas, ctx) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 0;

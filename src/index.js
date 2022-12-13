@@ -10,6 +10,7 @@ import { onResize } from './js/onResize';
 const nav = document.querySelector('nav');
 const projectsDiv = document.getElementById('projects');
 const canvas = drawCanvas();
+const ctx = canvas.getContext('2d');
 
 const { scene, camera, renderer} = setupStage();
 

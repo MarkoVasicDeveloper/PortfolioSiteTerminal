@@ -14,11 +14,11 @@ export function drawCanvas() {
     ctx.font = '25px Arial'
     ctx.fillStyle = "#111";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    home(canvas)
+    home(canvas, ctx)
     ctx.fillText('user: ~$ ', 50, 480);
     ctx.fillText('|', 165, 480);
     ctx.drawImage(img, 450, 0)
-    input('', canvas)
+    input('', canvas, ctx)
 
     return canvas;
 }

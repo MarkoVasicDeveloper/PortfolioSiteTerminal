@@ -1,4 +1,4 @@
-export function works(canvas) {
+export function works(canvas, ctx) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 0;

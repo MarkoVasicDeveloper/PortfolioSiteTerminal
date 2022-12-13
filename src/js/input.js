@@ -7,7 +7,7 @@ import { wrongCommand } from "./wrongCommand";
 
 let string = '';
 
-export function input(char, canvas) {
+export function input(char, canvas, ctx) {
     switch (char) {
         case 'Backspace':
             string = string.slice(0, -1);
@@ -15,7 +15,7 @@ export function input(char, canvas) {
         case 'Enter':
             command(string,canvas);
             string = '';
-            input(string, canvas)
+            input(string, canvas, ctx)
             return;
         default:
             break;
@@ -40,16 +40,16 @@ export function input(char, canvas) {
 function command(string, canvas) {
     switch (string) {
         case 'home':
-            home(canvas);
+            home(canvas, ctx);
             break;
         case 'above':
-            above(canvas);
+            above(canvas, ctx);
             break;
         case 'help':
-            help(canvas);
+            help(canvas, ctx);
             break;
         case 'projects':
-            works(canvas);
+            works(canvas,ctx);
             break;
         default:
             wrongCommand(canvas);
