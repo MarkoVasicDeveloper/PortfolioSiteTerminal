@@ -556,7 +556,7 @@ let computer;
 (0, _backround.background)(scene);
 window.addEventListener("wheel", (e)=>(0, _moveCamera.moveCamera)(e, camera));
 window.addEventListener("keyup", (e)=>{
-    (0, _input.input)(e.key, canvas);
+    (0, _input.input)(e.key, canvas, ctx);
 });
 window.addEventListener("scroll", ()=>{
     if (projectsDiv.getBoundingClientRect().top < 1) {
@@ -33376,34 +33376,34 @@ var _home = require("./home");
 var _works = require("./works");
 var _wrongCommand = require("./wrongCommand");
 let string = "";
-function input(char, canvas, ctx1) {
+function input(char, canvas, ctx) {
     switch(char){
         case "Backspace":
             string = string.slice(0, -1);
             break;
         case "Enter":
-            command(string, canvas);
+            command(string, canvas, ctx);
             string = "";
-            input(string, canvas, ctx1);
+            input(string, canvas, ctx);
             return;
         default:
             break;
     }
     if (char.length === 1 && string.length < 55) string = string + char;
-    ctx1.font = "25px Arial";
-    ctx1.shadowOffsetX = 0;
-    ctx1.shadowOffsetY = 0;
-    ctx1.shadowBlur = 0;
-    ctx1.fillStyle = "#111";
-    ctx1.fillRect(160, 460, canvas.width, 35);
-    ctx1.shadowColor = "#fec400";
-    ctx1.shadowOffsetX = 0.5;
-    ctx1.shadowOffsetY = 0.5;
-    ctx1.shadowBlur = 3;
-    ctx1.fillStyle = "#fec400";
-    ctx1.fillText(string + "|", 165, 480);
+    ctx.font = "25px Arial";
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = "#111";
+    ctx.fillRect(160, 460, canvas.width, 35);
+    ctx.shadowColor = "#fec400";
+    ctx.shadowOffsetX = 0.5;
+    ctx.shadowOffsetY = 0.5;
+    ctx.shadowBlur = 3;
+    ctx.fillStyle = "#fec400";
+    ctx.fillText(string + "|", 165, 480);
 }
-function command(string, canvas) {
+function command(string, canvas, ctx) {
     switch(string){
         case "home":
             (0, _home.home)(canvas, ctx);
@@ -33418,7 +33418,7 @@ function command(string, canvas) {
             (0, _works.works)(canvas, ctx);
             break;
         default:
-            (0, _wrongCommand.wrongCommand)(canvas);
+            (0, _wrongCommand.wrongCommand)(canvas, ctx);
             break;
     }
 }
@@ -33510,8 +33510,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "wrongCommand", ()=>wrongCommand);
 var _help = require("./help");
-function wrongCommand(canvas) {
-    (0, _help.help)(canvas);
+function wrongCommand(canvas, ctx) {
+    (0, _help.help)(canvas, ctx);
     ctx.fillText("Or you can use SCROLL!", 50, 300);
     ctx.font = "Bold 40px Arial";
     ctx.fillStyle = "#ff0000";
