@@ -8,6 +8,50 @@ body {
   font-family: Acme, sans-serif;
 }
 
+#loadingPage {
+  width: 100wv;
+  height: 100vh;
+  z-index: 100;
+  background-color: #b6b1ab;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+label {
+  color: #333;
+  font-family: Permanent Marker, cursive;
+  font-size: 4rem;
+}
+
+progress {
+  width: 300px;
+}
+
+button {
+  color: #b6b1ab;
+  background-color: #333;
+  border: #0000;
+  border-radius: 10px;
+  margin-top: 2rem;
+  padding: .3rem;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#loadingPage > p {
+  color: #333;
+  font-size: 4rem;
+}
+
 #titleImg {
   display: none;
 }
