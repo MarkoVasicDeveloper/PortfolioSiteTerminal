@@ -4,16 +4,14 @@ import { importModel } from "./js/importModel";
 import { moveCamera } from './js/moveCamera';
 import { setupStage } from "./js/setupStage";
 import { drawCanvas } from './js/drawCanvas';
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { DotScreenPass } from 'three/examples/jsm/postprocessing/DotScreenPass';
 import { input } from './js/input';
+import { onResize } from './js/onResize';
+
+const nav = document.querySelector('nav');
+const projectsDiv = document.getElementById('projects');
+const canvas = drawCanvas();
 
 const { scene, camera, renderer} = setupStage();
-
-const composer = new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene, camera));
-// composer.addPass(new DotScreenPass({x:0, y: 0}, 1, 10.1))
 
 let computer;
 importModel(scene).then(res => {scene.add(res.scene); computer = res.scene})
@@ -24,10 +22,16 @@ window.addEventListener('wheel', (e) => moveCamera(e, camera));
 window.addEventListener('keyup', (e) => {
     input(e.key, canvas);
 })
+window.addEventListener('scroll', () => {
+    if(projectsDiv.getBoundingClientRect().top < 1){
+        nav.classList.replace('nav-hidden', 'nav');
+        return
+    }
+    nav.classList.replace('nav', 'nav-hidden');
+})
 
-const canvas = drawCanvas();
+window.addEventListener('resize', () => onResize(camera, renderer, canvas))
 
-const ctx = canvas.getContext('2d');
 
 export const canvasTexture = new THREE.CanvasTexture(canvas);
 canvasTexture.minFilter = THREE.LinearFilter
@@ -35,8 +39,6 @@ canvasTexture.wrapS = THREE.ClampToEdgeWrapping;
 canvasTexture.wrapT = THREE.ClampToEdgeWrapping;
 
 function animation() {
-
-    canvasTexture.needsUpdate = true;
     
     if(computer) {
         computer.traverse(mesh => {
@@ -44,9 +46,9 @@ function animation() {
                 mesh.position.set(-0.155,0.19, -0.25)
             }
         })
+        canvasTexture.needsUpdate = true;
     }
     renderer.render(scene, camera);
-    // composer.render();
     requestAnimationFrame(animation);
 }
 
