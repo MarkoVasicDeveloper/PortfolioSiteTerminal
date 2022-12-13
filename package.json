@@ -1,10 +1,13 @@
 {
+  "homepage": "http://markovasicdeveloper.github.io/PortfolioSiteTerminal",
   "name": "portfolio",
   "version": "1.0.0",
   "description": "Marko Vasic, portfolio site",
-  "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url ./",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Marko Vasic",
   "license": "ISC",
@@ -14,6 +17,7 @@
     "three": "^0.146.0"
   },
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "parcel-reporter-static-files-copy": "^1.4.0"
   }
 }

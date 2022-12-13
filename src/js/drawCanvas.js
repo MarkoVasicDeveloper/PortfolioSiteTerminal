@@ -1,12 +1,10 @@
 import { home } from "./home";
 import { input } from "./input";
 
-const img = document.getElementById('titleImg');
-
 export function drawCanvas() {
     const img = document.getElementById('titleImg');
     const canvas = document.createElement('canvas')
-    ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
     canvas.width = 1024;
     canvas.height = 512;
     ctx.shadowColor = "#fec400"
