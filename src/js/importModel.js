@@ -1,14 +1,10 @@
 import * as THREE from 'three';
 import hdr from '../../static/HDR2.hdr';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 import model from '../../static/scene.glb'
-import { canvasTexture } from '..';
+import { canvasTexture, loader, rgbeLoader } from '..';
 
 export function importModel(scene) {
     return new Promise((res) => {
-        const rgbeLoader = new RGBELoader();
-        const loader = new GLTFLoader();
 
         rgbeLoader.load(hdr, (texture) => {
         
