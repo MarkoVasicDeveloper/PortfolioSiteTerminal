@@ -13,7 +13,7 @@ export function input(char, canvas, ctx) {
             string = string.slice(0, -1);
             break;
         case 'Enter':
-            command(string,canvas);
+            command(string,canvas, ctx);
             string = '';
             input(string, canvas, ctx)
             return;
@@ -37,7 +37,7 @@ export function input(char, canvas, ctx) {
     ctx.fillText(string + '|', 165, 480);
 }
 
-function command(string, canvas) {
+function command(string, canvas, ctx) {
     switch (string) {
         case 'home':
             home(canvas, ctx);
@@ -52,7 +52,7 @@ function command(string, canvas) {
             works(canvas,ctx);
             break;
         default:
-            wrongCommand(canvas);
+            wrongCommand(canvas, ctx);
             break;
     }
 }

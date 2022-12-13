@@ -1,7 +1,7 @@
 import { help } from "./help";
 
-export function wrongCommand(canvas) {
-    help(canvas)
+export function wrongCommand(canvas, ctx) {
+    help(canvas, ctx)
     ctx.fillText('Or you can use SCROLL!', 50, 300);
     ctx.font = 'Bold 40px Arial'
     ctx.fillStyle = '#ff0000';

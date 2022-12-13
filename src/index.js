@@ -21,7 +21,7 @@ background(scene);
 
 window.addEventListener('wheel', (e) => moveCamera(e, camera));
 window.addEventListener('keyup', (e) => {
-    input(e.key, canvas);
+    input(e.key, canvas, ctx);
 })
 window.addEventListener('scroll', () => {
     if(projectsDiv.getBoundingClientRect().top < 1){
