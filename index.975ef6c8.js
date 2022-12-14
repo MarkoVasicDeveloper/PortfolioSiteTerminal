@@ -545,6 +545,7 @@ var _moveCamera = require("./js/moveCamera");
 var _setupStage = require("./js/setupStage");
 var _drawCanvas = require("./js/drawCanvas");
 var _input = require("./js/input");
+var _onResize = require("./js/onResize");
 var _gltfloader = require("three/examples/jsm/loaders/GLTFLoader");
 var _rgbeloader = require("three/examples/jsm/loaders/RGBELoader");
 var _launchFullScreen = require("./js/launchFullScreen");
@@ -574,7 +575,7 @@ buttonReady.onclick = ()=>{
     if (window.innerHeight > window.innerWidth) {
         (0, _launchFullScreen.launchFullScreen)(document.documentElement);
         const myScreenOrientation = window.screen.orientation;
-        myScreenOrientation.lock("landscape");
+        myScreenOrientation.lock("portrait");
         camera.position.set(-0.1255, 0.108, 0.65);
         camera.rotation.z = Math.PI / 2;
     }
@@ -585,6 +586,7 @@ let computer;
     computer = res.scene;
 });
 (0, _backround.background)(scene);
+window.addEventListener("resize", ()=>(0, _onResize.onResize)());
 window.addEventListener("wheel", (e)=>(0, _moveCamera.moveCamera)(e, camera));
 window.addEventListener("keyup", (e)=>(0, _input.input)(e.key, canvas, ctx));
 window.addEventListener("scroll", ()=>{
@@ -613,7 +615,7 @@ function animation() {
 }
 animation();
 
-},{"three":"ktPTu","./js/backround":"buxqc","./js/importModel":"lFrOp","./js/moveCamera":"dX6Fp","./js/setupStage":"egG0d","./js/drawCanvas":"202ZB","./js/input":"8nlno","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","three/examples/jsm/loaders/GLTFLoader":"dVRsF","three/examples/jsm/loaders/RGBELoader":"cfP3d","./js/launchFullScreen":"5gwLt"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","./js/backround":"buxqc","./js/importModel":"lFrOp","./js/moveCamera":"dX6Fp","./js/setupStage":"egG0d","./js/drawCanvas":"202ZB","./js/input":"8nlno","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","three/examples/jsm/loaders/GLTFLoader":"dVRsF","three/examples/jsm/loaders/RGBELoader":"cfP3d","./js/launchFullScreen":"5gwLt","./js/onResize":"4Qx25"}],"ktPTu":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ACESFilmicToneMapping", ()=>ACESFilmicToneMapping);
@@ -29920,11 +29922,11 @@ function moveCamera(e, camera, touchStart) {
     const projectsDiv = document.getElementById("projects");
     if (e.deltaY > 0 || touch > 0) {
         if (camera.position.z >= 2) return;
-        if (camera.position.z < 1) camera.position.z += 0.01;
+        if (camera.position.z < 1) camera.position.z += touch > 0 ? 0.1 : 0.01;
         else {
             camera.lookAt(-0.0955, 0.088, -1);
-            camera.position.z += 0.01;
-            camera.position.x -= 0.01;
+            camera.position.z += touch > 0 ? 0.1 : 0.01;
+            camera.position.x -= touch > 0 ? 0.1 : 0.01;
         }
     }
     if (e.deltaY < 0 || touch < 0) {
@@ -29940,13 +29942,13 @@ function moveCamera(e, camera, touchStart) {
             return;
         }
         if (camera.position.z < 1) {
-            camera.position.z -= 0.01;
+            camera.position.z -= touch < 0 ? 0.1 : 0.01;
             if (window.innerHeight > window.innerWidth) camera.rotation.z = Math.PI / 2;
         } else {
             if (projectsDiv.getBoundingClientRect().top < window.innerHeight) return;
             camera.lookAt(-0.0955, 0.088, -1);
-            camera.position.z -= 0.01;
-            camera.position.x += 0.01;
+            camera.position.z -= touch > 0 ? 0.1 : 0.01;
+            camera.position.x += touch > 0 ? 0.1 : 0.01;
         }
     }
 }
@@ -33562,6 +33564,17 @@ function launchFullScreen(element) {
     if (element.requestFullScreen) element.requestFullScreen();
     else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
     else if (element.webkitRequestFullScreen) element.webkitRequestFullScreen();
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Qx25":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "onResize", ()=>onResize);
+function onResize(camera, renderer, canvas) {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["ShInH","8lqZg"], "8lqZg", "parcelRequire2041")
