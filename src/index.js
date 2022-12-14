@@ -45,7 +45,7 @@ buttonReady.onclick = () => {
         myScreenOrientation.lock('portrait');
 
         camera.position.set(-0.1255,0.108,0.65);
-        // camera.rotation.z = Math.PI / 2;
+        camera.rotation.z = Math.PI / 2;
     };
 }
 
