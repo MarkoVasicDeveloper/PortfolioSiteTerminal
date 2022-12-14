@@ -599,9 +599,10 @@ window.addEventListener("scroll", ()=>{
 let touchStart;
 window.addEventListener("touchstart", (e)=>touchStart = e.changedTouches[0].clientY);
 window.addEventListener("touchmove", (e)=>(0, _moveCamera.moveCamera)(e, camera, touchStart));
-canvas.addEventListener("touchstart", (e)=>{
+document.getElementsByTagName("canvas")[0].addEventListener("touchstart", (e)=>{
     const userInput = prompt("Enter a command:");
-    if (userInput) (0, _input.input)(userInput, canvas, ctx);
+    console.log(userInput);
+    (0, _input.command)(userInput, canvas, ctx);
 });
 const canvasTexture = new _three.CanvasTexture(canvas);
 canvasTexture.minFilter = _three.LinearFilter;
@@ -30735,6 +30736,7 @@ function home(canvas, ctx) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "input", ()=>input);
+parcelHelpers.export(exports, "command", ()=>command);
 var _above = require("./above");
 var _drawCanvas = require("./drawCanvas");
 var _help = require("./help");
