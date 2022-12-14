@@ -9,14 +9,14 @@ body {
 }
 
 #loadingPage {
-  width: 100wv;
-  height: 100vh;
   z-index: 100;
   background-color: #b6b1ab;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   display: flex;
+  position: fixed;
+  inset: 0;
 }
 
 label {
@@ -89,18 +89,19 @@ canvas {
 .nav {
   width: 10%;
   height: 3rem;
-  z-index: 10;
+  z-index: 20;
   justify-content: center;
   align-items: center;
   margin: 1rem;
   display: flex;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 10px;
 }
 
 .nav > a > i {
   color: #000;
+  background-color: #b6b1ab;
   margin-left: .5rem;
   font-size: 3rem;
   animation: 1s forwards show;
@@ -155,6 +156,18 @@ canvas {
   border-radius: 10px;
   margin: .3rem;
   padding: .3rem;
+}
+
+@media (max-width: 968px) {
+  #projects {
+    width: 100%;
+    margin-top: 400%;
+    padding: 4rem 1rem 2rem;
+  }
+
+  .above > ul, .above > p {
+    margin: 1rem;
+  }
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */
