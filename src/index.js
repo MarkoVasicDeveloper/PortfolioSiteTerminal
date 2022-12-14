@@ -5,7 +5,6 @@ import { moveCamera } from './js/moveCamera';
 import { setupStage } from "./js/setupStage";
 import { drawCanvas } from './js/drawCanvas';
 import { input } from './js/input';
-import { onResize } from './js/onResize';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 import { launchFullScreen } from './js/launchFullScreen';
@@ -34,11 +33,21 @@ manager.onLoad = function() {
     buttonReady.classList.remove('hidden');
 }
 
+const { scene, camera, renderer} = setupStage();
+
 buttonReady.onclick = () => {
     loadinPage.style.display = 'none';
+
+    if(window.innerHeight > window.innerWidth) {
+        launchFullScreen(document.documentElement);
+        const myScreenOrientation = window.screen.orientation;
+        myScreenOrientation.lock('landscape');
+
+        camera.position.set(-0.1255,0.108,0.65);
+        camera.rotation.z = Math.PI / 2;
+    };
 }
 
-const { scene, camera, renderer} = setupStage();
 
 let computer;
 importModel(scene).then(res => {scene.add(res.scene); computer = res.scene})
@@ -54,15 +63,11 @@ window.addEventListener('scroll', () => {
     }
     nav.classList.replace('nav', 'nav-hidden');
 })
-window.addEventListener('resize', () => onResize(camera, renderer, canvas));
-window.addEventListener('DOMContentLoaded', () => {
-    if(window.innerHeight > window.innerWidth) {
-        launchFullScreen(document.documentElement);
-        const myScreenOrientation = window.screen.orientation;
-        myScreenOrientation.lock('landscape');
-    };
-})
 
+let touchStart;
+
+window.addEventListener('touchstart', (e) => touchStart = e.changedTouches[0].clientY);
+window.addEventListener('touchmove', (e) => moveCamera(e, camera, touchStart));
 
 export const canvasTexture = new THREE.CanvasTexture(canvas);
 canvasTexture.minFilter = THREE.LinearFilter

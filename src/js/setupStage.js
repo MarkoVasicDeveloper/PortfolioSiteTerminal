@@ -8,11 +8,8 @@ export function setupStage() {
 
     const camera = new THREE.PerspectiveCamera(53.65, window.innerWidth / window.innerHeight, 0.1, 100);
 
-    // const controls = new OrbitControls( camera, renderer.domElement );
-
     camera.position.set(-0.0955,0.088,0.3);
     camera.lookAt(-0.0955,0.088,-1)
-    // controls.update();
     camera.updateProjectionMatrix();
 
     const light = new THREE.DirectionalLight(new THREE.Color('#ccc'), 1);

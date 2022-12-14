@@ -8,7 +8,7 @@ export function home(canvas, ctx) {
     ctx.shadowOffsetY = 0.1;
     ctx.shadowBlur = 2;
     ctx.fillStyle = "#fec400";
-    ctx.fillText(`Hi there,`, 50, 50);
+    ctx.fillText(`Hi there,`, 50, 55);
     ctx.font = '50px Arial'
     ctx.fillRect(50, 90, 350, 60);
     ctx.fillStyle = "#111";
