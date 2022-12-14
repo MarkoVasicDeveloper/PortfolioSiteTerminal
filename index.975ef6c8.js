@@ -586,7 +586,7 @@ let computer;
     computer = res.scene;
 });
 (0, _backround.background)(scene);
-window.addEventListener("resize", ()=>(0, _onResize.onResize)());
+window.addEventListener("resize", ()=>(0, _onResize.onResize)(camera, renderer, canvas));
 window.addEventListener("wheel", (e)=>(0, _moveCamera.moveCamera)(e, camera));
 window.addEventListener("keyup", (e)=>(0, _input.input)(e.key, canvas, ctx));
 window.addEventListener("scroll", ()=>{
@@ -29922,11 +29922,11 @@ function moveCamera(e, camera, touchStart) {
     const projectsDiv = document.getElementById("projects");
     if (e.deltaY > 0 || touch > 0) {
         if (camera.position.z >= 2) return;
-        if (camera.position.z < 1) camera.position.z += touch > 0 ? 0.1 : 0.01;
+        if (camera.position.z < 1) camera.position.z += touch > 0 ? 0.05 : 0.01;
         else {
             camera.lookAt(-0.0955, 0.088, -1);
-            camera.position.z += touch > 0 ? 0.1 : 0.01;
-            camera.position.x -= touch > 0 ? 0.1 : 0.01;
+            camera.position.z += touch > 0 ? 0.05 : 0.01;
+            camera.position.x -= touch > 0 ? 0.05 : 0.01;
         }
     }
     if (e.deltaY < 0 || touch < 0) {
@@ -29942,13 +29942,13 @@ function moveCamera(e, camera, touchStart) {
             return;
         }
         if (camera.position.z < 1) {
-            camera.position.z -= touch < 0 ? 0.1 : 0.01;
+            camera.position.z -= touch < 0 ? 0.05 : 0.01;
             if (window.innerHeight > window.innerWidth) camera.rotation.z = Math.PI / 2;
         } else {
             if (projectsDiv.getBoundingClientRect().top < window.innerHeight) return;
             camera.lookAt(-0.0955, 0.088, -1);
-            camera.position.z -= touch > 0 ? 0.1 : 0.01;
-            camera.position.x += touch > 0 ? 0.1 : 0.01;
+            camera.position.z -= touch > 0 ? 0.05 : 0.01;
+            camera.position.x += touch > 0 ? 0.05 : 0.01;
         }
     }
 }
@@ -33571,6 +33571,8 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "onResize", ()=>onResize);
 function onResize(camera, renderer, canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
