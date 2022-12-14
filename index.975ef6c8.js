@@ -559,7 +559,6 @@ const progressBar = document.getElementById("progressBar");
 const progressLabel = document.getElementById("progressLabel");
 const buttonReady = document.getElementById("ready");
 const progress = document.getElementById("progress");
-const terminalInput = document.getElementById("terminalInput");
 const canvas = (0, _drawCanvas.drawCanvas)();
 const ctx = canvas.getContext("2d");
 manager.onProgress = function(url, loaded, total) {
@@ -593,15 +592,17 @@ window.addEventListener("keyup", (e)=>(0, _input.input)(e.key, canvas, ctx));
 window.addEventListener("scroll", ()=>{
     if (projectsDiv.getBoundingClientRect().top < 1) {
         nav.classList.replace("nav-hidden", "nav");
-        terminalInput.style.display = "none";
         return;
     }
-    terminalInput.style.display = "block";
     nav.classList.replace("nav", "nav-hidden");
 });
 let touchStart;
 window.addEventListener("touchstart", (e)=>touchStart = e.changedTouches[0].clientY);
 window.addEventListener("touchmove", (e)=>(0, _moveCamera.moveCamera)(e, camera, touchStart));
+canvas.addEventListener("touchstart", (e)=>{
+    const userInput = prompt("Enter a command:");
+    if (userInput) (0, _input.input)(userInput, canvas, ctx);
+});
 const canvasTexture = new _three.CanvasTexture(canvas);
 canvasTexture.minFilter = _three.LinearFilter;
 canvasTexture.wrapS = _three.ClampToEdgeWrapping;
