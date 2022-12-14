@@ -20,13 +20,14 @@ const loadinPage = document.getElementById('loadingPage');
 const progressBar = document.getElementById('progressBar');
 const progressLabel = document.getElementById('progressLabel');
 const buttonReady = document.getElementById('ready');
-const pr = document.getElementById('pr');
+const progress = document.getElementById('progress');
+const terminalInput = document.getElementById('terminalInput');
 const canvas = drawCanvas();
 const ctx = canvas.getContext('2d');
 
 manager.onProgress = function(url, loaded, total) {
     progressBar.value = ((loaded / total) * 100).toFixed(0);
-    pr.textContent = ((loaded / total) * 100).toFixed(0) + '%';
+    progress.textContent = ((loaded / total) * 100).toFixed(0) + '%';
 }
 
 manager.onLoad = function() {
@@ -55,14 +56,16 @@ importModel(scene).then(res => {scene.add(res.scene); computer = res.scene})
 
 background(scene);
 
-window.addEventListener('resize', () => onResize())
+window.addEventListener('resize', () => onResize(camera, renderer, canvas))
 window.addEventListener('wheel', (e) => moveCamera(e, camera));
 window.addEventListener('keyup', (e) => input(e.key, canvas, ctx));
 window.addEventListener('scroll', () => {
     if(projectsDiv.getBoundingClientRect().top < 1){
         nav.classList.replace('nav-hidden', 'nav');
+        terminalInput.style.display = 'none';
         return
     }
+    terminalInput.style.display = 'block';
     nav.classList.replace('nav', 'nav-hidden');
 })
 

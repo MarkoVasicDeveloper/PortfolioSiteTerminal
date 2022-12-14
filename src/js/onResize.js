@@ -1,4 +1,6 @@
 export function onResize(camera, renderer, canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 

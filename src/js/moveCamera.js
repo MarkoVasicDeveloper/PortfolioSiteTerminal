@@ -11,11 +11,11 @@ export function moveCamera (e, camera, touchStart) {
     if(e.deltaY > 0 || touch > 0) {
         if(camera.position.z >= 2) return;
         if(camera.position.z < 1) {
-            camera.position.z += touch > 0 ? 0.1 : 0.01;
+            camera.position.z += touch > 0 ? 0.05 : 0.01;
         } else {
             camera.lookAt(-0.0955,0.088,-1)
-            camera.position.z += touch > 0 ? 0.1 :0.01;
-            camera.position.x -= touch > 0 ? 0.1 :0.01;
+            camera.position.z += touch > 0 ? 0.05 : 0.01;
+            camera.position.x -= touch > 0 ? 0.05 : 0.01;
         }
     }
 
@@ -33,13 +33,13 @@ export function moveCamera (e, camera, touchStart) {
             return
         };
         if(camera.position.z < 1) {
-            camera.position.z -= touch < 0 ? 0.1 : 0.01;
+            camera.position.z -= touch < 0 ? 0.05 : 0.01;
             if(window.innerHeight > window.innerWidth) camera.rotation.z = Math.PI / 2;
         } else {
             if(projectsDiv.getBoundingClientRect().top < window.innerHeight) return;
             camera.lookAt(-0.0955,0.088,-1)
-            camera.position.z -= touch > 0 ? 0.1 : 0.01;
-            camera.position.x += touch > 0 ? 0.1 : 0.01;
+            camera.position.z -= touch < 0 ? 0.05 : 0.01;
+            camera.position.x += touch < 0 ? 0.05 : 0.01;
         }
     }
 }
