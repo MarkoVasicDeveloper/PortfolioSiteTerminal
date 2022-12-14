@@ -558,12 +558,13 @@ const loadinPage = document.getElementById("loadingPage");
 const progressBar = document.getElementById("progressBar");
 const progressLabel = document.getElementById("progressLabel");
 const buttonReady = document.getElementById("ready");
-const pr = document.getElementById("pr");
+const progress = document.getElementById("progress");
+const terminalInput = document.getElementById("terminalInput");
 const canvas = (0, _drawCanvas.drawCanvas)();
 const ctx = canvas.getContext("2d");
 manager.onProgress = function(url, loaded, total) {
     progressBar.value = (loaded / total * 100).toFixed(0);
-    pr.textContent = (loaded / total * 100).toFixed(0) + "%";
+    progress.textContent = (loaded / total * 100).toFixed(0) + "%";
 };
 manager.onLoad = function() {
     progressLabel.textContent = "READY!";
@@ -592,8 +593,10 @@ window.addEventListener("keyup", (e)=>(0, _input.input)(e.key, canvas, ctx));
 window.addEventListener("scroll", ()=>{
     if (projectsDiv.getBoundingClientRect().top < 1) {
         nav.classList.replace("nav-hidden", "nav");
+        terminalInput.style.display = "none";
         return;
     }
+    terminalInput.style.display = "block";
     nav.classList.replace("nav", "nav-hidden");
 });
 let touchStart;
@@ -29947,8 +29950,8 @@ function moveCamera(e, camera, touchStart) {
         } else {
             if (projectsDiv.getBoundingClientRect().top < window.innerHeight) return;
             camera.lookAt(-0.0955, 0.088, -1);
-            camera.position.z -= touch > 0 ? 0.05 : 0.01;
-            camera.position.x += touch > 0 ? 0.05 : 0.01;
+            camera.position.z -= touch < 0 ? 0.05 : 0.01;
+            camera.position.x += touch < 0 ? 0.05 : 0.01;
         }
     }
 }

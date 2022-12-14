@@ -107,6 +107,17 @@ canvas {
   animation: 1s forwards show;
 }
 
+#terminalInput {
+  width: 100%;
+  height: 100vh;
+  color: #0000;
+  background-color: #0000;
+  border: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 @keyframes show {
   0% {
     font-size: 0;
