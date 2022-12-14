@@ -5,6 +5,7 @@ import { moveCamera } from './js/moveCamera';
 import { setupStage } from "./js/setupStage";
 import { drawCanvas } from './js/drawCanvas';
 import { input } from './js/input';
+import { onResize } from './js/onResize';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
 import { launchFullScreen } from './js/launchFullScreen';
@@ -54,6 +55,7 @@ importModel(scene).then(res => {scene.add(res.scene); computer = res.scene})
 
 background(scene);
 
+window.addEventListener('resize', () => onResize())
 window.addEventListener('wheel', (e) => moveCamera(e, camera));
 window.addEventListener('keyup', (e) => input(e.key, canvas, ctx));
 window.addEventListener('scroll', () => {
