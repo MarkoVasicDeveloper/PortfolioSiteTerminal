@@ -42,7 +42,7 @@ buttonReady.onclick = () => {
     if(window.innerHeight > window.innerWidth) {
         launchFullScreen(document.documentElement);
         const myScreenOrientation = window.screen.orientation;
-        myScreenOrientation.lock('landscape');
+        myScreenOrientation.lock('portrait');
 
         camera.position.set(-0.1255,0.108,0.65);
         // camera.rotation.z = Math.PI / 2;
