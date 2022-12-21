@@ -559,6 +559,7 @@ const progressBar = document.getElementById("progressBar");
 const progressLabel = document.getElementById("progressLabel");
 const buttonReady = document.getElementById("ready");
 const progress = document.getElementById("progress");
+const terminalInput = document.getElementById("terminalInput");
 const canvas = (0, _drawCanvas.drawCanvas)();
 const ctx = canvas.getContext("2d");
 manager.onProgress = function(url, loaded, total) {
@@ -592,18 +593,15 @@ window.addEventListener("keyup", (e)=>(0, _input.input)(e.key, canvas, ctx));
 window.addEventListener("scroll", ()=>{
     if (projectsDiv.getBoundingClientRect().top < 1) {
         nav.classList.replace("nav-hidden", "nav");
+        terminalInput.style.display = "none";
         return;
     }
+    terminalInput.style.display = "block";
     nav.classList.replace("nav", "nav-hidden");
 });
 let touchStart;
 window.addEventListener("touchstart", (e)=>touchStart = e.changedTouches[0].clientY);
 window.addEventListener("touchmove", (e)=>(0, _moveCamera.moveCamera)(e, camera, touchStart));
-document.getElementsByTagName("canvas")[0].addEventListener("touchstart", (e)=>{
-    const userInput = prompt("Enter a command:");
-    console.log(userInput);
-    (0, _input.command)(userInput, canvas, ctx);
-});
 const canvasTexture = new _three.CanvasTexture(canvas);
 canvasTexture.minFilter = _three.LinearFilter;
 canvasTexture.wrapS = _three.ClampToEdgeWrapping;
@@ -620,7 +618,7 @@ function animation() {
 }
 animation();
 
-},{"three":"ktPTu","./js/backround":"buxqc","./js/importModel":"lFrOp","./js/moveCamera":"dX6Fp","./js/setupStage":"egG0d","./js/drawCanvas":"202ZB","./js/input":"8nlno","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","three/examples/jsm/loaders/GLTFLoader":"dVRsF","three/examples/jsm/loaders/RGBELoader":"cfP3d","./js/launchFullScreen":"5gwLt","./js/onResize":"4Qx25"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","./js/backround":"buxqc","./js/importModel":"lFrOp","./js/moveCamera":"dX6Fp","./js/setupStage":"egG0d","./js/drawCanvas":"202ZB","./js/input":"8nlno","./js/onResize":"4Qx25","three/examples/jsm/loaders/GLTFLoader":"dVRsF","three/examples/jsm/loaders/RGBELoader":"cfP3d","./js/launchFullScreen":"5gwLt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ktPTu":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ACESFilmicToneMapping", ()=>ACESFilmicToneMapping);
@@ -29838,7 +29836,7 @@ function background(scene) {
     });
 }
 
-},{"../../static/background.glb":"pjL1l","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","..":"8lqZg"}],"pjL1l":[function(require,module,exports) {
+},{"..":"8lqZg","../../static/background.glb":"pjL1l","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"pjL1l":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("bLxZJ") + "background.ae16a65f.glb" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -30722,7 +30720,7 @@ function home(canvas, ctx) {
     ctx.fillRect(50, 90, 350, 60);
     ctx.fillStyle = "#111";
     ctx.font = "Bold 50px Arial";
-    ctx.fillText(`I' am Marko!`, 50, 140);
+    ctx.fillText(`I am Marko!`, 50, 140);
     ctx.fillStyle = "#fec400";
     ctx.font = "25px Arial";
     ctx.fillText("- Frontend developer", 50, 210);
@@ -30736,9 +30734,7 @@ function home(canvas, ctx) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "input", ()=>input);
-parcelHelpers.export(exports, "command", ()=>command);
-var _above = require("./above");
-var _drawCanvas = require("./drawCanvas");
+var _about = require("./about");
 var _help = require("./help");
 var _home = require("./home");
 var _works = require("./works");
@@ -30776,8 +30772,8 @@ function command(string, canvas, ctx) {
         case "home":
             (0, _home.home)(canvas, ctx);
             break;
-        case "above":
-            (0, _above.above)(canvas, ctx);
+        case "about":
+            (0, _about.about)(canvas, ctx);
             break;
         case "help":
             (0, _help.help)(canvas, ctx);
@@ -30791,11 +30787,11 @@ function command(string, canvas, ctx) {
     }
 }
 
-},{"./above":"e4xtM","./drawCanvas":"202ZB","./help":"gaL6d","./home":"cEl3V","./works":"bWEYe","./wrongCommand":"9Qslg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e4xtM":[function(require,module,exports) {
+},{"./about":"hS7Ir","./help":"gaL6d","./home":"cEl3V","./works":"bWEYe","./wrongCommand":"9Qslg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hS7Ir":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "above", ()=>above);
-function above(canvas, ctx) {
+parcelHelpers.export(exports, "about", ()=>about);
+function about(canvas, ctx) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 0;
@@ -30808,7 +30804,7 @@ function above(canvas, ctx) {
     ctx.fillRect(50, 55, 250, 60);
     ctx.font = "Bold 50px Arial";
     ctx.fillStyle = "#111";
-    ctx.fillText("Above Me!", 50, 100);
+    ctx.fillText("About Me!", 50, 100);
     ctx.font = "15px Arial";
     ctx.fillStyle = "#fec400";
     ctx.fillText(`I have three years of experience in creating frontend and backend`, 50, 150);
@@ -30838,7 +30834,7 @@ function help(canvas, ctx) {
     ctx.shadowBlur = 2;
     ctx.fillText("Available command for you:", 50, 100);
     ctx.fillText("- home", 50, 150);
-    ctx.fillText("- above", 50, 200);
+    ctx.fillText("- about", 50, 200);
     ctx.fillText("- projects", 50, 250);
 }
 
@@ -30886,7 +30882,20 @@ function wrongCommand(canvas, ctx) {
     ctx.fillText("Command not found!", 50, 400);
 }
 
-},{"./help":"gaL6d","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dVRsF":[function(require,module,exports) {
+},{"./help":"gaL6d","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Qx25":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "onResize", ()=>onResize);
+function onResize(camera, renderer, canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dVRsF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "GLTFLoader", ()=>GLTFLoader);
@@ -33570,19 +33579,6 @@ function launchFullScreen(element) {
     if (element.requestFullScreen) element.requestFullScreen();
     else if (element.mozRequestFullScreen) element.mozRequestFullScreen();
     else if (element.webkitRequestFullScreen) element.webkitRequestFullScreen();
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Qx25":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "onResize", ()=>onResize);
-function onResize(camera, renderer, canvas) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["ShInH","8lqZg"], "8lqZg", "parcelRequire2041")
