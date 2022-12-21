@@ -1,4 +1,4 @@
-export function above(canvas, ctx) {
+export function about(canvas, ctx) {
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     ctx.shadowBlur = 0;
@@ -11,7 +11,7 @@ export function above(canvas, ctx) {
     ctx.fillRect(50, 55, 250, 60)
     ctx.font = 'Bold 50px Arial';
     ctx.fillStyle = '#111';
-    ctx.fillText('Above Me!', 50, 100);
+    ctx.fillText('About Me!', 50, 100);
     ctx.font = '15px Arial';
     ctx.fillStyle = '#fec400';
     ctx.fillText(`I have three years of experience in creating frontend and backend`, 50, 150);

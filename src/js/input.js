@@ -1,5 +1,4 @@
-import { above } from "./above";
-import { drawCanvas } from "./drawCanvas";
+import { about } from "./about";
 import { help } from "./help";
 import { home } from "./home";
 import { works } from "./works";
@@ -42,8 +41,8 @@ function command(string, canvas, ctx) {
         case 'home':
             home(canvas, ctx);
             break;
-        case 'above':
-            above(canvas, ctx);
+        case 'about':
+            about(canvas, ctx);
             break;
         case 'help':
             help(canvas, ctx);

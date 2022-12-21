@@ -10,6 +10,6 @@ export function help(canvas, ctx) {
     ctx.shadowBlur = 2;
     ctx.fillText('Available command for you:', 50, 100);
     ctx.fillText('- home', 50, 150);
-    ctx.fillText('- above', 50, 200);
+    ctx.fillText('- about', 50, 200);
     ctx.fillText('- projects', 50, 250);
 }

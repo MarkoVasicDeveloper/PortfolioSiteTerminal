@@ -13,7 +13,7 @@ export function home(canvas, ctx) {
     ctx.fillRect(50, 90, 350, 60);
     ctx.fillStyle = "#111";
     ctx.font = 'Bold 50px Arial';
-    ctx.fillText(`I' am Marko!`, 50, 140);
+    ctx.fillText(`I am Marko!`, 50, 140);
     ctx.fillStyle = "#fec400";
     ctx.font = '25px Arial';
     ctx.fillText('- Frontend developer', 50, 210);
